@@ -18,6 +18,10 @@ public class PedidosService {
         return pedidosRepository.save(pedido);
     }
 
+    public List<Pedidos> listPedidos() {
+        return pedidosRepository.findAll();
+    }
+
     public List<Pedidos> listPedidosBySituacao(String situacao) {
         return pedidosRepository.findPedidosBySituacao(situacao);
     }

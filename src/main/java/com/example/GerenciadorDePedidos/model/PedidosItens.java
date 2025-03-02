@@ -15,6 +15,7 @@ public class PedidosItens {
 
     @ManyToOne
     @JoinColumn(name = "I_PEDIDOS")
+
     private Pedidos pedido;
 
     @Column(name = "QUANTIDADE")

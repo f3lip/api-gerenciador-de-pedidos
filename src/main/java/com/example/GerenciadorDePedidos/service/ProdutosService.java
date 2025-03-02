@@ -5,6 +5,8 @@ import com.example.GerenciadorDePedidos.repository.ProdutosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProdutosService {
     @Autowired
@@ -13,4 +15,9 @@ public class ProdutosService {
     public Produtos save(Produtos produto) {
         return produtosRepository.save(produto);
     }
+
+    public List<Produtos> listProdutos() {
+        return produtosRepository.findAll();
+    }
+
 }

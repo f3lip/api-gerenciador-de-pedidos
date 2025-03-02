@@ -3,19 +3,24 @@ package com.example.GerenciadorDePedidos.resource;
 import com.example.GerenciadorDePedidos.model.Clientes;
 import com.example.GerenciadorDePedidos.service.ClientesService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("/clientes")
+@RequestMapping("/clientes/")
 public class ClientesResource {
     @Autowired
     private ClientesService clientesService;
 
-    @PostMapping
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Clientes save(@RequestBody Clientes cliente) {
         return clientesService.save(cliente);
+    }
+
+    @GetMapping(value = "listClientes")
+    public List<Clientes> listClientes() {
+        return clientesService.listClientes();
     }
 }
