@@ -26,4 +26,9 @@ public class ClientesService {
     public Optional<Clientes> findCliente(Long idCliente) {
         return clientesRepository.findById(idCliente);
     }
+
+    @Transactional
+    public void excluirCliente(Long clienteId) {
+        clientesRepository.excluirCliente(clienteId);
+    }
 }

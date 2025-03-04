@@ -18,6 +18,11 @@ public class PedidosItensService {
         return pedidosItensRepository.save(pedidoItem);
     }
 
+    @Transactional
+    public void save(List<PedidosItens> pedidosItensList) {
+        pedidosItensRepository.saveAll(pedidosItensList);
+    }
+
     public List<PedidosItens> listPedidosItensByPedido(Long pedidoId) {
         return pedidosItensRepository.findPedidosItensByPedidoId(pedidoId);
     }

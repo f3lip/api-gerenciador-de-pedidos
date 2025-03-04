@@ -16,7 +16,7 @@ public class Produtos {
     private Double preco;
 
     @Column(name = "FL_EXCLUIDO")
-    private Boolean excluido;
+    private Boolean excluido = Boolean.FALSE;
 
     public Long getId() {
         return id;
@@ -37,14 +37,21 @@ public class Produtos {
     public Produtos() {}
 
     public Produtos(Builder builder) {
+        this.id = builder.id;
         this.nome = builder.nome;
         this.preco = builder.preco;
         this.excluido = builder.excluido;
     }
     public static class Builder {
+        private Long id;
         private String nome;
         private Double preco;
         private Boolean excluido;
+
+        public Builder id(Long id) {
+            this.id = id;
+            return this;
+        }
 
         public Builder nome(String nome) {
             this.nome = nome;

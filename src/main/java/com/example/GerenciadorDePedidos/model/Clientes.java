@@ -13,7 +13,7 @@ public class Clientes {
     private String nome;
 
     @Column(name = "FL_EXCLUIDO")
-    private Boolean excluido;
+    private Boolean excluido = Boolean.FALSE;
 
     public Long getId() {
         return id;
@@ -30,12 +30,19 @@ public class Clientes {
     public Clientes() {}
 
     public Clientes(Builder builder) {
+        this.id = builder.id;
         this.nome = builder.nome;
         this.excluido = builder.excluido;
     }
     public static class Builder {
+        private Long id;
         private String nome;
         private Boolean excluido;
+
+        public Builder id(Long id) {
+            this.id = id;
+            return this;
+        }
 
         public Builder nome(String nome) {
             this.nome = nome;

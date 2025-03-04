@@ -22,7 +22,7 @@ public class PedidosItens {
     private Integer quantidade;
 
     @Column(name = "FL_EXCLUIDO")
-    private Boolean excluido;
+    private Boolean excluido = Boolean.FALSE;
 
     public Long getId() {
         return id;
@@ -47,6 +47,7 @@ public class PedidosItens {
     public PedidosItens() {}
 
     public PedidosItens(Builder builder) {
+        this.id = builder.id;
         this.produto = builder.produto;
         this.pedido = builder.pedido;
         this.quantidade = builder.quantidade;
@@ -54,10 +55,16 @@ public class PedidosItens {
     }
 
     public static class Builder {
+        private Long id;
         private Produtos produto;
         private Pedidos pedido;
         private Integer quantidade;
         private Boolean excluido;
+
+        public Builder id(Long id) {
+            this.id = id;
+            return this;
+        }
 
         public Builder produto(Produtos produto) {
             this.produto = produto;
@@ -74,7 +81,7 @@ public class PedidosItens {
             return this;
         }
 
-        public Builder excluid(Boolean excluido) {
+        public Builder excluido(Boolean excluido) {
             this.excluido = excluido;
             return this;
         }
