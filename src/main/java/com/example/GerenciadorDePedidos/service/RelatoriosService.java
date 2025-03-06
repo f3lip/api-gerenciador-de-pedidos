@@ -1,5 +1,6 @@
 package com.example.GerenciadorDePedidos.service;
 
+import com.example.GerenciadorDePedidos.dto.ClientesMaisAtivosDTO;
 import com.example.GerenciadorDePedidos.dto.ResumoVendasDTO;
 import com.example.GerenciadorDePedidos.model.Pedidos;
 import com.example.GerenciadorDePedidos.repository.PedidosRepository;
@@ -23,5 +24,9 @@ public class RelatoriosService {
 
     public List<Pedidos> relatorioPedidosPendentes() {
         return pedidosRepository.findPedidosBySituacao(Pedidos.SITUACAO_EM_ANDAMENTO);
+    }
+
+    public List<ClientesMaisAtivosDTO> relatorioClientesMaisAtivos() {
+        return relatoriosRepository.relatorioClientesMaisAtivos();
     }
 }

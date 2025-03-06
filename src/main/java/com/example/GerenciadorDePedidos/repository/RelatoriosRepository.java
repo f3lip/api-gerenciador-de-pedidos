@@ -1,10 +1,14 @@
 package com.example.GerenciadorDePedidos.repository;
 
+import com.example.GerenciadorDePedidos.dto.ClientesMaisAtivosDTO;
 import com.example.GerenciadorDePedidos.dto.ResumoVendasDTO;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import org.springframework.stereotype.Repository;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class RelatoriosRepository{
@@ -38,5 +42,30 @@ public class RelatoriosRepository{
         resumoVendas.setTotalProdutosVendidos((Long) result[2]);
 
         return resumoVendas;
+    }
+
+    public List<ClientesMaisAtivosDTO> relatorioClientesMaisAtivos() {
+        String sql = " SELECT " +
+                "C.NOME AS nome, " +
+                "COUNT(C.ID) AS quantidadePedidos " +
+                "FROM " +
+                "CLIENTES C " +
+                "JOIN PEDIDOS P ON " +
+                "P.I_CLIENTES = C.ID " +
+                "GROUP BY " +
+                "C.ID, " +
+                "C.NOME " +
+                "ORDER BY quantidadePedidos DESC ";
+
+        Query query = entityManager.createNativeQuery(sql);
+        List<Object[]> resultList = (List<Object[]>) query.getResultList();
+        List<ClientesMaisAtivosDTO> clientesMaisAtivosDTOList = new ArrayList<>();
+        for(Object[] result : resultList) {
+            ClientesMaisAtivosDTO clientesMaisAtivos = new ClientesMaisAtivosDTO();
+            clientesMaisAtivos.setNomeCliente((String) result[0]);
+            clientesMaisAtivos.setQuantidadePedidos((Long) result[1]);
+            clientesMaisAtivosDTOList.add(clientesMaisAtivos);
+        }
+        return clientesMaisAtivosDTOList;
     }
 }

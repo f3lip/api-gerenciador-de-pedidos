@@ -1,7 +1,7 @@
 package com.example.GerenciadorDePedidos.resource;
 
+import com.example.GerenciadorDePedidos.dto.ClientesMaisAtivosDTO;
 import com.example.GerenciadorDePedidos.model.Pedidos;
-import com.example.GerenciadorDePedidos.model.Produtos;
 import com.example.GerenciadorDePedidos.dto.ResumoVendasDTO;
 import com.example.GerenciadorDePedidos.service.RelatoriosService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,4 +26,7 @@ public class RelatoriosResource {
     public List<Pedidos> pedidosPendentes() {
         return relatoriosService.relatorioPedidosPendentes();
     }
+
+    @GetMapping(value = "clientesMaisAtivos")
+    public List<ClientesMaisAtivosDTO> clientesMaisAtivos() { return relatoriosService.relatorioClientesMaisAtivos(); }
 }

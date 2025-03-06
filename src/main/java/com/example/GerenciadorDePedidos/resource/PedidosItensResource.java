@@ -1,6 +1,5 @@
 package com.example.GerenciadorDePedidos.resource;
 
-import com.example.GerenciadorDePedidos.model.Pedidos;
 import com.example.GerenciadorDePedidos.model.PedidosItens;
 import com.example.GerenciadorDePedidos.service.PedidosItensService;
 import org.springframework.beans.factory.annotation.Autowired;
